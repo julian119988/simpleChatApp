@@ -3,7 +3,7 @@ const http = require("http").createServer(app);
 const PORT = 8080;
 const io = require("socket.io")(http, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "*",
     methods: ["GET", "POST"],
   },
 });
