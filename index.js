@@ -8,7 +8,6 @@ app.use(express.static(normalize(__dirname + "/public")));
 app.use(helmet());
 
 app.get("/*", (req, res) => {
-  console.log("lo intenot");
   res.sendFile(normalize(__dirname + "/public/index.html"));
 });
 
@@ -18,7 +17,7 @@ var server = app.listen(PORT, () => {
 
 const io = require("socket.io")(server, {
   cors: {
-    origin: "https://simple-chat-appz.herokuapp.com/",
+    origin: "https://chat-room-server.vercel.app/",
     methods: ["GET", "POST"],
   },
 });
