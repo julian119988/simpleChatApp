@@ -1,7 +1,14 @@
 const app = require("express")();
 const express = require("express");
+const http = require("http").createServer(app);
 const { normalize } = require("path");
 const helmet = require("helmet");
+const io = require("socket.io")(http, {
+  cors: {
+    origin: "https://chat-room-server.vercel.app/",
+    methods: ["GET", "POST"],
+  },
+});
 const PORT = process.env.PORT || 8080;
 
 app.use(express.static(normalize(__dirname + "/public")));
@@ -13,13 +20,6 @@ app.get("/*", (req, res) => {
 
 var server = app.listen(PORT, () => {
   console.log(`Listening on: ${PORT}`);
-});
-
-const io = require("socket.io")(server, {
-  cors: {
-    origin: "https://chat-room-server.vercel.app/",
-    methods: ["GET", "POST"],
-  },
 });
 
 io.on("connection", (socket) => {
