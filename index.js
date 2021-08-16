@@ -5,7 +5,7 @@ const { normalize } = require("path");
 const helmet = require("helmet");
 const io = require("socket.io")(http, {
   cors: {
-    origin: "https://chat-room-server.vercel.app/",
+    origin: "https://chat-room-app-weld.vercel.app/",
     methods: ["GET", "POST"],
   },
 });
